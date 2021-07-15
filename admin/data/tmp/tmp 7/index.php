@@ -8,8 +8,65 @@ include '../../../include/function/session.php';
 <link href="<?php echo $url; ?>/assets/css/bootstrap.css" rel="stylesheet"/>
 <link href="<?php echo $url; ?>/assets/css/font-awesome.css" rel="stylesheet"/>
 <link href="<?php echo $url; ?>/assets/css/custom.css" rel="stylesheet"/>
-
 <style>
+    .login-btn{
+        color: #e3e3e3;
+        font-size: 15px;
+        font-weight: normal;
+        letter-spacing: 1px;
+        line-height: normal;
+        list-style: none;
+        text-transform: uppercase;
+        display: block
+    }
+
+    /* Dropdown Button */
+        .dropbtn {
+        background-color: #313131; 
+        color: #e3e3e3;
+        font-size: 15px;
+        font-weight: normal;
+        letter-spacing: 1px;
+        line-height: normal;
+        padding: 7px 20px;
+        text-transform: uppercase;
+        display: block;
+
+        border: none;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #e3e3e3;}
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {display: block;}
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {background-color: #4c59b5;}
 th {
     text-align: center;
 }
@@ -39,14 +96,19 @@ th {
             <a class="navbar-brand" href="<?php index(); ?>"><?php echo $_COOKIE['name']?></a>
         </div>
 
-        <div
-            style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;">
+        
+        <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;">
             <?php echo $formatwaktu; ?>
             &nbsp;
-            <a href="<?php logout(); ?>" class="btn btn-danger square-btn-adjust">Logout</a>
+            <div class="dropdown">
+                <button class="dropbtn"><?php echo ($_COOKIE['name']) ?><i class="fa fa-caret-down" style="color: white; margin-left: 5px"></i></button>
+                <div class="dropdown-content">
+                    <a class="nav-link" href="">Change Password</a>
+                    <a class="nav-link" href="">Change Profile</a>
+                    <a class="nav-link" href="<?php logout(); ?>">Logout</a>
+                </div>
+            </div>
+            
         </div>
     </nav>
     <!-- /. NAV TOP -->
