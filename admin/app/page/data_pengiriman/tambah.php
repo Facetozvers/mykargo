@@ -1,52 +1,55 @@
 <!-- <script src="../../../data/js/jquery.js"></script> -->
 <script>
-
     function ajax_wilayah_tujuan() {
 
         var dari = $("#wilayah_pengiriman").val();
         var input = $("#wilayah_tujuan").val();
-        var id_kategori = $("#kategori").val();
-
+        var jenis_layanan = $('#jenis_layanan').val();
+        var kategori = $('#kategori').val();
         $.ajax({
-            url: '../../../include/function/ajax.php',
+            url: '../../../../admin/include/function/ajax.php',
             type: 'POST',
-            dataType: 'json',
-            data: {'dari': dari, 'tujuan': input,'id_kategori': id_kategori, 'tabel': 'data_tarif', 'field': 'tujuan'},
+            dataType: 'JSON',
+            data: {'dari': dari, 'tujuan': input, 'tabel': 'data_tarif', 'field': 'tujuan', 'kategori': kategori},
             success: function (proses) {
-                var jenis_layanan = $('#jenis_layanan');
-                $("#tarif").val(proses['tarif_biasa']);
+                
+                if (jenis_layanan == 'Biasa'){
+                    $("#tarif").val(proses['tarif_biasa']);
+                    
+                }
 
-                if (jenis_layanan.val() == 'cepat') {
+                else if (jenis_layanan == 'cepat') {
 
                     $("#tarif").val(proses['tarif_cepat']);
                 }
 
-                if (jenis_layanan.val() == 'Cargo') {
+                else if (jenis_layanan == 'Cargo') {
 
-                    $("#tarif").val(proses['tarif_cargo'] / 10);
+                    $("#tarif").val(proses['tarif_cargo']);
                 }
-
+                
                 var tarif = $("#tarif").val();
                 var berat = $("#berat").val();
+                var harga_kategori = proses['harga_kategori'];
                 var asuransi_admin = $("#asuransi_admin").val();
-                var total = (parseInt(tarif) * parseInt(berat)) + parseInt(asuransi_admin);
+                var total = (parseInt(harga_kategori) * parseInt(tarif) * parseInt(berat)) + parseInt(asuransi_admin);
+                
                 $("#total_bayar").val(total);
             }
         });
     }
-
-
-    function asss()
+	
+	function asss()
     {
        
-        var tarif = $("#tarif").val();
+        var harga_barang = $("#nilai_declare_value").val();
         var ass = $("#asuransi").val();
         //alert(ass);
 
 
         if (ass == "ya")
         {
-            $("#asuransi_admin").val(tarif * 5/100);
+            $("#asuransi_admin").val(harga_barang * 5/100);
         }
         else
         {
@@ -56,6 +59,28 @@
         ajax_wilayah_tujuan();
     }
 
+    function cek_user(){
+
+        var name = $("#pengirim").val();
+        $.ajax({
+            url: '../../../../admin/include/function/pelanggan.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {'username': name},
+            success: function (proses) {
+                
+                if(proses == true){
+                    $("#label_cek").html('User tersebut telah terdaftar');
+                    $("#label_cek").css('color','green');
+                }
+
+                else{
+                    $("#label_cek").html('User tersebut belum terdaftar');
+                    $("#label_cek").css('color','red');
+                }
+            }
+        });
+    }
 </script>
 
 
@@ -101,10 +126,8 @@
                         </td>
                         <td width="2%">:</td>
                         <td>
-                            <input class="form-control"type="text" name="pengirim" id="pengirim" placeholder="Pengirim"
-                                   required="required">
-
-
+                            <input value="" onkeyup="cek_user()" class="form-control"type="text" name="pengirim" id="pengirim" placeholder="Pengirim" required="required">
+                            <label for="" id="label_cek" style="margin-top:5px; margin-left:9px; margin-bottom:0px"></label>
                         </td>
                     </tr>
                     <tr>
@@ -113,7 +136,9 @@
                         </td>
                         <td width="2%">:</td>
                         <td>
-                            <input onkeypress='return a(event)' class="form-control"type="text" name="no_telepon_pengirim"
+                            <input value="<?php 
+        $id_pelanggan = $_COOKIE['kodene'];
+        echo $no_telepon = baca_database("","no_telepon","select * from data_pelanggan where id_pelanggan = '$id_pelanggan'"); ?>" onkeypress='return a(event)' class="form-control"type="text" name="no_telepon_pengirim"
                                    id="no_telepon_pengirim" placeholder="No&nbsp;Telepon&nbsp;Pengirim"
                                    required="required">
 
@@ -141,9 +166,9 @@
                         <td width="2%">:</td>
                         <td>
 				<textarea class="form-control"type="text" name="alamat_lengkap_pengiriman" id="alamat_lengkap_pengiriman"
-                          placeholder="Alamat&nbsp;Lengkap&nbsp;Pengiriman" required="required">
-
-</textarea>
+                          placeholder="Alamat&nbsp;Lengkap&nbsp;Pengiriman" required="required"><?php 
+        $id_pelanggan = $_COOKIE['kodene'];
+        echo $alamat_lengkap = baca_database("","alamat_lengkap","select * from data_pelanggan where id_pelanggan = '$id_pelanggan'"); ?></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -206,7 +231,7 @@
                             <input class="form-control"type="text" name="kode_kota_tujuan" id="kode_kota_tujuan"
                                    placeholder="Kode Kota Tujuan" required="required">
                         </td>
-                    </tr>
+                    </tr> 
                     <tr>
                         <td width="25%" class="leftrowcms">
                             <label>Kategori <span class="highlight"></span></label>
@@ -218,7 +243,7 @@
                             <select onchange="ajax_wilayah_tujuan()" class=' selectpicker' data-live-search='true'
                                     type="text" name="kategori" id="kategori" placeholder="kategori"
                                     required="required">
-                                <option></option><?php combo_database_v2('data_kategori', 'id_kategori','kategori', ''); ?>
+                                <option></option><?php combo_database('data_kategori', 'kategori', ''); ?>
                             </select>
                         </td>
                     </tr>
@@ -229,7 +254,7 @@
                         </td>
                         <td width="2%">:</td>
                         <td>
-                            <input onkeyup="ajax_wilayah_tujuan()"  class="form-control"type="text"
+                            <input onkeyup="ajax_wilayah_tujuan()" onclick="ajax_wilayah_tujuan()" class="form-control"type="text"
                                    name="berat" id="berat" placeholder="Berat" required="required">
 
 
@@ -255,7 +280,7 @@
                         </td>
                         <td width="2%">:</td>
                         <td>
-                            <input class="form-control"type="text" name="tarif" id="tarif" placeholder="Tarif" required="required">
+                            <input onchange="ajax_wilayah_tujuan()" class="form-control"type="text" name="tarif" readonly value="" id="tarif" placeholder="Tarif">
 
 
                         </td>
@@ -300,9 +325,8 @@
                         <td>
 
                         <select onchange="asss()"  name="asuransi" id="asuransi">
-                        <option  value="tidak">Tidak</option>
-                        <option  value="ya">Ya</option>
-                        
+                            <option  value="tidak">Tidak</option>
+                            <option  value="ya">Ya</option>
                         </select>
                             <input class="form-control" onkeyup="ajax_wilayah_tujuan()" type="hidden" name="asuransi_admin"
                                    id="asuransi_admin"
@@ -318,7 +342,7 @@
                         </td>
                         <td width="2%">:</td>
                         <td>
-                            <input class="form-control"type="text" name="nilai_declare_value" id="nilai_declare_value"
+                            <input class="form-control" onkeyup="asss()" type="text" name="nilai_declare_value" id="nilai_declare_value"
                                    placeholder="Nilai Declare Value" required="required">
                         </td>
                     </tr>
@@ -329,12 +353,14 @@
                         </td>
                         <td width="2%">:</td>
                         <td>
-                            <input class="form-control"type="text" name="total_bayar" id="total_bayar"
+                            <input class="form-control"type="text" name="total_bayar" readonly value="" id="total_bayar"
                                    placeholder="Total&nbsp;Bayar" required="required">
 
 
                         </td>
                     </tr>
+
+                    
 
 
                     </tbody>

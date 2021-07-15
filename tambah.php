@@ -25,7 +25,7 @@
 
                 else if (jenis_layanan == 'Cargo') {
 
-                    $("#tarif").val(proses['tarif_cargo'] / 10);
+                    $("#tarif").val(proses['tarif_cargo']);
                 }
                 
                 var tarif = $("#tarif").val();
