@@ -99,6 +99,7 @@ else
 					$isi =  mysql_real_escape_string($_GET['isi']);
 					echo '<center> Cetak berdasarkan <b>'.$Berdasarkan.'</b> : <b>'.$isi.'</b></center>';
 					$querytabel="SELECT * FROM data_pengiriman where $Berdasarkan like '%$isi%'";
+					$qSum = "SELECT SUM(total_bayar) AS value_sum FROM data_pengiriman where $Berdasarkan like '%$isi%'";
 				}
 				else if (isset($_GET['tanggal1']) && !empty($_GET['tanggal1']))
 				{
@@ -110,14 +111,16 @@ else
 					$tanggal2_indo = format_indo($tanggal2);
 					echo '<center> Cetak Berdasarkan <b>'.$Berdasarkan.'</b> Dari Tanggal <b>'.$tanggal1_indo.'</b> s/d <b>'.$tanggal2_indo.'</b></center>';
 					$querytabel="SELECT * FROM data_pengiriman where ($Berdasarkan BETWEEN '$tanggal1' AND '$tanggal2')";
-				
+					$qSum = "SELECT SUM(total_bayar) AS value_sum FROM data_pengiriman where ($Berdasarkan BETWEEN '$tanggal1' AND '$tanggal2')";
 				}
 				else
 				{
 					//SEMUA
 					$querytabel="SELECT * FROM data_pengiriman";
+					$qSum = "SELECT SUM(total_bayar) AS value_sum FROM data_pengiriman";
 				}
 				$proses = mysql_query($querytabel);
+				$result = mysql_query($qSum);
 				while ($data = mysql_fetch_array($proses)) 
 			{
 			?>
@@ -145,6 +148,14 @@ else
 
         </tr>
         <?php } ?>
+		<?php 
+			while($data = mysql_fetch_array($result)){ ?>
+				<tr>
+					<td colspan=18 style="text-align:left; background: lightblue"><strong>Jumlah Total Pembayaran</strong></td>
+					<td style="background:lightblue"><strong><?php echo rupiah($data['value_sum'])?></strong></td>
+				</tr>
+		<?php	}
+		?>
     </tbody>
 </table>
 <!-- BODY -->
@@ -155,7 +166,6 @@ else
 <p class="auto-style3"><?php echo $ttd; ?></p>
 <p class="auto-style3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
-<p class="auto-style3"><?php echo $siapa ; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</p>
-<p class="auto-style3"></p>
+
 
 <?php } ?>
