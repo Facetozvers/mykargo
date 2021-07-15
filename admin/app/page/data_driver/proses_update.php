@@ -30,10 +30,18 @@ detail_informasi_driver='$detail_informasi_driver'
 where id_driver='$id_driver' ") or die(mysql_error());
 
 if ($query) {
-    ?>
-    <script>location.href = "<?php index(); ?>?input=popup_edit";</script>
-    <?php
-} else {
+    if($_COOKIE["siapa"] == 'driver'){ ?>
+        <script>
+        alert("Data Berhasil diubah!");
+        location.href = "../home/index.php?input=popup_edit";
+        </script>
+    <?php }
+    else{ ?>
+        <script>location.href = "<?php index(); ?>?input=popup_edit";</script>
+        <?php
+    }
+} 
+else {
     echo "GAGAL DIPROSES";
 }
 ?>

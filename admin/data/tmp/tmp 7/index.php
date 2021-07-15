@@ -100,15 +100,25 @@ th {
         <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;">
             <?php echo $formatwaktu; ?>
             &nbsp;
+            <?php if($_COOKIE['siapa'] == 'driver') { ?>
             <div class="dropdown">
                 <button class="dropbtn"><?php echo ($_COOKIE['name']) ?><i class="fa fa-caret-down" style="color: white; margin-left: 5px"></i></button>
                 <div class="dropdown-content">
                     <a class="nav-link" href="">Change Password</a>
-                    <a class="nav-link" href="">Change Profile</a>
+                    <a class="nav-link" href="../data_driver/index.php?input=edit&proses=<?= encrypt($_COOKIE['id']); ?>">Change Profile</a>
                     <a class="nav-link" href="<?php logout(); ?>">Logout</a>
                 </div>
             </div>
-            
+            <?php } 
+            else {?>
+            <div class="dropdown">
+                <button class="dropbtn"><?php echo ($_COOKIE['name']) ?><i class="fa fa-caret-down" style="color: white; margin-left: 5px"></i></button>
+                <div class="dropdown-content">
+                    <a class="nav-link" href="">Change Password</a>
+                    <a class="nav-link" href="<?php logout(); ?>">Logout</a>
+                </div>
+            </div>
+            <?php }?>
         </div>
     </nav>
     <!-- /. NAV TOP -->
