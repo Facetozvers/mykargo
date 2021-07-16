@@ -114,7 +114,6 @@ th {
             <div class="dropdown">
                 <button class="dropbtn"><?php echo ($_COOKIE['name']) ?><i class="fa fa-caret-down" style="color: white; margin-left: 5px"></i></button>
                 <div class="dropdown-content">
-                    <a class="nav-link" href="">Change Password</a>
                     <a class="nav-link" href="<?php logout(); ?>">Logout</a>
                 </div>
             </div>
