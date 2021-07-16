@@ -227,7 +227,7 @@ include 'home/include/all_include.php';
                                             <div class="dropdown">
                                                 <button class="dropbtn"><?php echo ($_COOKIE['nama']) ?><i class="fa fa-caret-down" style="margin-left: 8px; color:#e3e3e3"></i></button>
                                                 <div class="dropdown-content">
-                                                    <a class="nav-link" href="">Change Password</a>
+                                                    <a class="nav-link" href="?p=change_password">Change Password</a>
                                                     <a class="nav-link" href="">Change Profile</a>
                                                     <a class="nav-link" href="login_go.php?action=logout">Logout</a>
                                                 </div>
