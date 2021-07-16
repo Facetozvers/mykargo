@@ -18,17 +18,7 @@
             <div id="postcustom">	
                 <table <?php tabel_in(100, '%', 0, 'center'); ?>>		
                     <tbody>
-                        <!--h
-                        <tr>
-                            <td width="25%" class="leftrowcms">					
-                                <label >Id Tracking Pengiriman  <span class="highlight">*</span></label>
-                            </td>
-                            <td width="2%">:</td>
-                            <td>
-                              <?php echo id_otomatis("data_tracking_pengiriman", "id_tracking_pengiriman", "10"); ?>  		
-                            </td>
-                        </tr>
-                        h-->
+                        
                         <input type="hidden" class="form-control" readonly value="<?php echo id_otomatis("data_tracking_pengiriman", "id_tracking_pengiriman", "10"); ?>" name="id_tracking_pengiriman" placeholder="Id Tracking Pengiriman " id="id_tracking_pengiriman" required="required">
 
                           <tr>
@@ -60,7 +50,44 @@
                          
                          
 <!-- MAPS INPUT -->
-<script src="http://maps.google.com/maps?file=api&v=2&key=Kode-APIKEY-Anda" type="text/javascript"></script>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeRK32JN_ZeJMRxa-iZGycriUxxxY3WZg&callback=initMap">
+</script>
+<script>
+    function initMap() {
+        const myLatlng = { lat: -6.210376270240721, lng: 106.84804992887346 };
+        const mapDiv = document.getElementById("map");
+        const map = new google.maps.Map(mapDiv, {
+            zoom: 15,
+            center: myLatlng,
+        });
+       // Create the initial InfoWindow.
+            let infoWindow = new google.maps.InfoWindow({
+                content: "Click the map to get Lat/Lng!",
+                position: myLatlng,
+            });
+            infoWindow.open(map);
+            // Configure the click listener.
+            map.addListener("click", (mapsMouseEvent) => {
+                // Close the current InfoWindow.
+                infoWindow.close();
+                // Create a new InfoWindow.
+                infoWindow = new google.maps.InfoWindow({
+                position: mapsMouseEvent.latLng,
+                });
+                infoWindow.setContent(
+                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                );
+                infoWindow.open(map);
+
+                $('#latlongclicked').val(mapsMouseEvent.latLng);
+                $('#latspan').html(mapsMouseEvent.latLng.lat());
+                $('#lngspan').html(mapsMouseEvent.latLng.lng());
+                $('#lat').val(mapsMouseEvent.latLng.lat());
+                $('#lng').val(mapsMouseEvent.latLng.lng());
+            });
+    }
+</script>
 <style type="text/css">
 .main {
     text-align: center;
@@ -78,7 +105,7 @@
     padding: 5px;
     border: 1px dashed #C2DAE7;
 }
-#mapa {
+#map {
     width: 100%;
     height: 340px;
     border: 5px solid #DEEBF2;
@@ -110,16 +137,13 @@ li {
 
 <div class="main">
     <div style="width:100%; margin:0px auto;">
-        <div id="mapa"></div>
+        <div id="map"></div>
         <div class="eventtext">
             <div>Lattitude:
                 <span id="latspan"></span>
             </div>
             <div>Longitude:
                 <span id="lngspan"></span>
-            </div>
-            <div>Lat Lng:
-                <span id="latlong"></span>
             </div>
             <div>Lat Lng on click:
                 <input
@@ -130,36 +154,9 @@ li {
         </div>
     </div>
 </div>
-<script type="text/javascript">
-if (GBrowserIsCompatible())
-{
-map = new GMap2(document.getElementById("mapa"));
-map.addControl(new GLargeMapControl());
-map.addControl(new GMapTypeControl(3));
-map.setCenter( new GLatLng(-6.17, 107.09), 7,0);
 
-GEvent.addListener(map,'mousemove',function(point)
-{
-document.getElementById('latspan').innerHTML = point.lat()
-document.getElementById('lngspan').innerHTML = point.lng()
-document.getElementById('latlong').innerHTML = point.lat() + ', ' + point.lng()
-});
-
-GEvent.addListener(map,'click',function(overlay,point)
-{
-document.getElementById('latlongclicked').value = point.lat() + ', ' + point.lng()
-document.getElementById('lat').value = point.lat()
-document.getElementById('lng').value = point.lng()
-});
-}
-</script>
 <br/>
 <div style="width:70%; margin:0 auto;">
-<!-- MAPS INPUT -->
-
-
-
-
                             </td>
                         </tr>
                           <tr>
