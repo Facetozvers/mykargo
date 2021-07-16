@@ -70,6 +70,11 @@
 					//POPUP TAMBAH
 					include 'cetak.php';
 				}
+				elseif ($input=='change_password')
+				{
+					//POPUP TAMBAH
+					include 'change_password.php';
+				}
 				else
 				{
 					//LAINNYA

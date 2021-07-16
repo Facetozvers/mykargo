@@ -1,7 +1,19 @@
+<?php 
+    if($_COOKIE['siapa'] == 'driver'){
+        ?>
+        <a href="../home/index.php">
+        <?php btn_kembali(' KEMBALI KE HALAMAN SEBELUMNYA'); ?>
+        </a>
+        <?php
+    }
+    else{ ?>
+        <a href="<?php index(); ?>">
+        <?php btn_kembali(' KEMBALI KE HALAMAN SEBELUMNYA'); ?>
+        </a>
+    <?php
+    }
+?>
 
-<a href="<?php index(); ?>">
-    <?php btn_kembali(' KEMBALI KE HALAMAN SEBELUMNYA'); ?>
-</a>
 
     <div class="col-sm-12" style="margin-bottom: 20px; margin-top: 20px;">
     <div class="alert alert-warning">

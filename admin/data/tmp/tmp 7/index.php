@@ -104,7 +104,7 @@ th {
             <div class="dropdown">
                 <button class="dropbtn"><?php echo ($_COOKIE['name']) ?><i class="fa fa-caret-down" style="color: white; margin-left: 5px"></i></button>
                 <div class="dropdown-content">
-                    <a class="nav-link" href="">Change Password</a>
+                    <a class="nav-link" href="../data_driver/index.php?input=change_password">Change Password</a>
                     <a class="nav-link" href="../data_driver/index.php?input=edit&proses=<?= encrypt($_COOKIE['id']); ?>">Change Profile</a>
                     <a class="nav-link" href="<?php logout(); ?>">Logout</a>
                 </div>
