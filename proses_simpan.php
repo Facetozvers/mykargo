@@ -2,6 +2,13 @@
 function location() { return "home"; }
 include 'admin/include/all_include.php';
 
+//cari username
+$kode = $_COOKIE['kodene'];
+$q = "select * from data_pelanggan where id_pelanggan='$kode'";
+$result = mysql_query($q);
+while($row = mysql_fetch_array($result)){
+    $username = $row['username'];
+}
 
 $nomor_resi = rand(10,99).date('isdmY');
 $tanggal_pengiriman = xss($_POST['tanggal_pengiriman']);
@@ -42,6 +49,7 @@ $query = mysql_query("insert into data_pengiriman
  `nomor_resi`, 
  `tanggal_pengiriman`, 
  `pengirim`, 
+ `username`, 
  `no_telepon_pengirim`, 
  `wilayah_pengiriman`, 
  `alamat_lengkap_pengiriman`, 
@@ -78,6 +86,7 @@ values (
 '$nomor_resi'
  ,'$tanggal_pengiriman'
  ,'$pengirim'
+ ,'$username'
  ,'$no_telepon_pengirim'
  ,'$wilayah_pengiriman'
  ,'$alamat_lengkap_pengiriman'

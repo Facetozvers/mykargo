@@ -3,7 +3,7 @@ include '../koneksi/koneksi.php';
 $username = $_POST['username'];
 
 //mencari id_kategori
-$result = mysql_query("SELECT * FROM data_pelanggan WHERE nama='$username'");
+$result = mysql_query("SELECT * FROM data_pelanggan WHERE username='$username'");
 
 
 if (mysql_num_rows($result) > 0){

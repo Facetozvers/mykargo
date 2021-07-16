@@ -61,7 +61,7 @@
 
     function cek_user(){
 
-        var name = $("#pengirim").val();
+        var name = $("#username").val();
         $.ajax({
             url: '../../../../admin/include/function/pelanggan.php',
             type: 'POST',
@@ -126,7 +126,16 @@
                         </td>
                         <td width="2%">:</td>
                         <td>
-                            <input value="" onkeyup="cek_user()" class="form-control"type="text" name="pengirim" id="pengirim" placeholder="Pengirim" required="required">
+                            <input value="" class="form-control"type="text" name="pengirim" id="pengirim" placeholder="Pengirim" required="required">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="25%" class="leftrowcms">
+                            <label>Username <span class="highlight"></span></label>
+                        </td>
+                        <td width="2%">:</td>
+                        <td>
+                            <input value="" onkeyup="cek_user()" class="form-control"type="text" name="username" id="username" placeholder="Username pengirim (optional)">
                             <label for="" id="label_cek" style="margin-top:5px; margin-left:9px; margin-bottom:0px"></label>
                         </td>
                     </tr>

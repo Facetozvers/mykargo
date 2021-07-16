@@ -2,13 +2,10 @@
 
 include '../../../include/all_include.php';
 
-//
-// echo "<pre>";
-// print_r($_POST); die;
-
 $nomor_resi = id_otomatis("data_pengiriman", "nomor_resi", "10");
 $tanggal_pengiriman = xss($_POST['tanggal_pengiriman']);
 $pengirim = xss($_POST['pengirim']);
+$username = xss($_POST['username']);
 $no_telepon_pengirim = xss($_POST['no_telepon_pengirim']);
 $wilayah_pengiriman = xss($_POST['wilayah_pengiriman']);
 $alamat_lengkap_pengiriman = xss($_POST['alamat_lengkap_pengiriman']);
@@ -46,6 +43,7 @@ $query = mysql_query("insert into data_pengiriman
  `nomor_resi`, 
  `tanggal_pengiriman`, 
  `pengirim`, 
+ `username`, 
  `no_telepon_pengirim`, 
  `wilayah_pengiriman`, 
  `alamat_lengkap_pengiriman`, 
@@ -83,6 +81,7 @@ values (
 '$nomor_resi'
  ,'$tanggal_pengiriman'
  ,'$pengirim'
+ ,'$username'
  ,'$no_telepon_pengirim'
  ,'$wilayah_pengiriman'
  ,'$alamat_lengkap_pengiriman'

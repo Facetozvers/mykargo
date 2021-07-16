@@ -45,7 +45,7 @@
             <th align="center" class="th_border cell">Asuransi Admin</th>
             <th align="center" class="th_border cell">Nilai Declare / Value</th>
         </tr>
-
+        
         <tbody>
         <?php
         $no = 0;
@@ -53,16 +53,16 @@
         $no = $startRow;
 
         $id_pelanggan = $_COOKIE['kodene'];
-        $nama = baca_database("","nama","select * from data_pelanggan where id_pelanggan = '$id_pelanggan'");
+        $username = baca_database("","username","select * from data_pelanggan where id_pelanggan = '$id_pelanggan'");
 
         if (isset($_GET['Berdasarkan']) && !empty($_GET['Berdasarkan']) && isset($_GET['isi']) && !empty($_GET['isi'])) {
             $berdasarkan = mysql_real_escape_string($_GET['Berdasarkan']);
             $isi = mysql_real_escape_string($_GET['isi']);
-            $querytabel = "SELECT * FROM data_pengiriman where $berdasarkan like '%$isi%' and pengirim='$nama' LIMIT $startRow ,$dataPerPage";
-            $querypagination = "SELECT COUNT(*) AS total FROM data_pengiriman where $berdasarkan like '%$isi%'  and pengirim='$nama'";
+            $querytabel = "SELECT * FROM data_pengiriman where $berdasarkan like '%$isi%' and username='$username' LIMIT $startRow ,$dataPerPage";
+            $querypagination = "SELECT COUNT(*) AS total FROM data_pengiriman where $berdasarkan like '%$isi%'  and username='$username'";
         } else {
-            $querytabel = "SELECT * FROM data_pengiriman  where pengirim='$nama' LIMIT $startRow ,$dataPerPage";
-            $querypagination = "SELECT COUNT(*) AS total FROM data_pengiriman  where pengirim='$nama'";
+            $querytabel = "SELECT * FROM data_pengiriman  where username='$username' LIMIT $startRow ,$dataPerPage";
+            $querypagination = "SELECT COUNT(*) AS total FROM data_pengiriman  where username='$username'";
         }
         $proses = mysql_query($querytabel);
         while ($data = mysql_fetch_array($proses)) { ?>
@@ -70,24 +70,6 @@
                 <td class="th_border cell" align="center" width="200">
                     <table border="0">
                         <tr>
-                            <!-- <td>
-                                <a href="<?php index(); ?>?input=detail&proses=<?= encrypt($data['nomor_resi']); ?>">
-                                    <?php btn_detail('Detail'); ?></a>
-                            </td>
-                            <td>
-                                <a href="<?php index(); ?>?input=edit&proses=<?= encrypt($data['nomor_resi']); ?>">
-                                    <?php btn_edit('Update Status'); ?></a>
-                            </td>
-                            <td>
-                                <a href="<?php index(); ?>?input=hapus&proses=<?= encrypt($data['nomor_resi']); ?>">
-                                    <?php btn_hapus('Hapus');?></a>
-                            </td> -->
-<!-- 
-                            <td>
-                                <a href="cetak_resi_ulang.php?<?= http_build_query($data); ?>" class="btn btn-success btn-xs">
-                                    Cetak Resi</a>
-                            </td> -->
-
                             <td>
                                 <a href="?p=tracking&no_resi=<?php echo encrypt($data['nomor_resi']); ?>" class="btn btn-primary btn-xs">
                                     Tracking Pengiriman</a>

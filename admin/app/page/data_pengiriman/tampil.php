@@ -80,6 +80,7 @@
             <th style="vertical-align:middle">Nomor&nbsp;resi</th>
             <th style="vertical-align:middle" valign="center" class="th_border cell">Tanggal&nbsp;pengiriman</th>
             <th style="vertical-align:middle" valign="center" class="th_border cell">Pengirim</th>
+            <th style="vertical-align:middle" valign="center" class="th_border cell">Username</th>
             <th style="vertical-align:middle" valign="center" class="th_border cell">No&nbsp;telepon&nbsp;pengirim</th>
             <th style="vertical-align:middle" valign="center" class="th_border cell">Wilayah&nbsp;pengiriman</th>
             <th style="vertical-align:middle" valign="center" class="th_border cell">Alamat&nbsp;lengkap&nbsp;pengiriman</th>
@@ -173,6 +174,7 @@
 
                 <td style="vertical-align:middle" align="center"><?php echo(format_indo($data['tanggal_pengiriman'])); ?></td>
                 <td style="vertical-align:middle" align="center"><?php echo($data['pengirim']); ?></td>
+                <td style="vertical-align:middle" align="center"><?php echo($data['username']); ?></td>
                 <td style="vertical-align:middle" align="center"><?php echo($data['no_telepon_pengirim']); ?></td>
                 <td style="vertical-align:middle" align="center"><?php echo($data['wilayah_pengiriman']); ?></td>
                 <td style="vertical-align:middle" align="center"><?php echo($data['alamat_lengkap_pengiriman']); ?></td>
