@@ -14,7 +14,7 @@ if (!isset($_POST['id_tracking_pengiriman'])) {
 
 $id_tracking_pengiriman = xss($_POST['id_tracking_pengiriman']);
 $nomor_resi = xss($_POST['nomor_resi']);
-$id_driver = xss($_POST['id_driver']);
+$id_driver = xss($_COOKIE['jenenge']);
 $lat = xss($_POST['lat']);
 $lng = xss($_POST['lng']);
 $keterangan = xss($_POST['keterangan']);

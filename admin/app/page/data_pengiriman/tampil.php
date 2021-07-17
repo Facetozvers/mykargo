@@ -93,21 +93,8 @@
             <th style="vertical-align:middle" valign="center" class="th_border cell">Jenis Layanan</th>
             <th style="vertical-align:middle" valign="center" class="th_border cell">Tarif</th>
             <th style="vertical-align:middle" valign="center" class="th_border cell">Keterangan&nbsp;isi&nbsp;paket</th>
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Status</th>-->
             <th style="vertical-align:middle" valign="center" class="th_border cell">Keterangan</th>
             <th style="vertical-align:middle" valign="center" class="th_border cell">Total&nbsp;bayar</th>
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Cabang Agen</th>-->
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Asal Origin</th>-->
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Tujuan Destination</th>-->
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Kepada Consigne</th>-->
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Telp / Hp</th>-->
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Dari Shipper</th>-->
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Jumlah Pieces</th>-->
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Berat Weight</th>-->
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Isi Kiriman Description</th>-->
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Catatan Instruction</th>-->
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Biaya Kiriman / Chargers</th>-->
-<!--            <th style="vertical-align:middle" valign="center" class="th_border cell">Jumlah</th>-->
             <th style="vertical-align:middle" valign="center" class="th_border cell">Asuransi Admin</th>
             <th style="vertical-align:middle" valign="center" class="th_border cell">Nilai Declare / Value</th>
             <th style="vertical-align:middle" valign="center" class="th_border cell">Admin</th>
@@ -187,22 +174,8 @@
                 <td style="vertical-align:middle" align="center"><?php echo($data['jenis_layanan']); ?></td>
                 <td style="vertical-align:middle" align="center"><?php echo rupiah($data['tarif']); ?></td>
                 <td style="vertical-align:middle" align="center"><?php echo(($data['keterangan_isi_paket'])); ?></td>
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo($data['status']); ?><!--</td>-->
                 <td style="vertical-align:middle" align="center"><?php echo(($data['keterangan'])); ?></td>
                 <td style="vertical-align:middle" align="center"><?php echo(rupiah($data['total_bayar'])); ?></td>
-            <!--    <td style="vertical-align:middle" align="center"><?php echo(($data['total_bayar'])); ?></td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['cabang_agen'])); ?><!--</td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['asal_origin'])); ?><!--</td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['tujuan_destination'])); ?><!--</td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['kepada_consigne'])); ?><!--</td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['telp_hp'])); ?><!--</td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['dari_shipper'])); ?><!--</td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['jumlah_pieces'])); ?><!--</td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['berat_weight'])); ?><!--</td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['isi_kiriman_description'])); ?><!--</td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['catatan_instruction'])); ?><!--</td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['biaya_kiriman_chargers'])); ?><!--</td>-->
-<!--                <td style="vertical-align:middle" align="center">--><?php //echo(($data['jumlah'])); ?><!--</td>-->
                 <td style="vertical-align:middle" align="center"><?php echo(($data['asuransi_admin'])); ?></td>
                 <td style="vertical-align:middle" align="center"><?php echo(($data['nilai_declare_value'])); ?></td>
                 <td style="vertical-align:middle" align="center"><?php echo(($data['admin'])); ?></td>

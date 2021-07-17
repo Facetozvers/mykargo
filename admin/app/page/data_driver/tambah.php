@@ -93,7 +93,7 @@
                             </td>
                             <td width="2%">:</td>
                             <td>
-                                <textarea class="form-control" style="width:50%" type="text" name="password" id="password" placeholder="Password " required="required"></textarea>
+                                <input class="form-control" style="width:50%" type="text" name="password" id="password" placeholder="Password " required="required"></input>
                             </td>
                         </tr>
 						

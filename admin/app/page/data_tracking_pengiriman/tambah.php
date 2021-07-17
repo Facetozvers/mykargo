@@ -36,9 +36,8 @@
                             </td>
                             <td width="2%">:</td>
                             <td>
-                                <select class="form-control" style="width:50%" type="text" name="id_driver" id="id_driver" placeholder="Id Driver " required="required">
-                                <option></option><?php combo_database_v2('data_driver','id_driver','nama',''); ?>
-                                </select>
+                                <input readonly class="form-control" style="width:50%" type="hidden" name="id_driver" id="id_driver" placeholder="Id Driver" value="<?php echo $_COOKIE['id']?>" required="required"></input>
+                                <input readonly class="form-control" style="width:50%" type="text" name="nama_driver" id="nama_driver" placeholder="Nama Driver" value="<?php echo $_COOKIE['name']?>" required="required"></input>
                             </td>
                         </tr>
                           <tr>

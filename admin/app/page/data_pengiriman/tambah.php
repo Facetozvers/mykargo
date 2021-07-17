@@ -1,4 +1,3 @@
-<!-- <script src="../../../data/js/jquery.js"></script> -->
 <script>
     function ajax_wilayah_tujuan() {
 
@@ -69,9 +68,11 @@
             data: {'username': name},
             success: function (proses) {
                 
-                if(proses == true){
+                if(proses != 0){
                     $("#label_cek").html('User tersebut telah terdaftar');
                     $("#label_cek").css('color','green');
+                    $("#pengirim").val(proses['nama']);
+                    
                 }
 
                 else{

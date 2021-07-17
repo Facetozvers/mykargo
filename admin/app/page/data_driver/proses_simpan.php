@@ -20,7 +20,7 @@ $no_telepon=xss($_POST['no_telepon']);
 $no_ktp=xss($_POST['no_ktp']);
 $detail_informasi_driver=xss($_POST['detail_informasi_driver']);
 $username=xss($_POST['username']);
-$password=xss($_POST['password']);
+$password=md5($_POST['password']);
 
 $query = mysql_query("insert into data_driver values (
 '$id_driver'
