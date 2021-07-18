@@ -105,13 +105,38 @@
                 };
                 // Create a marker for each place.
                 markers.push(
-                  new google.maps.Marker({
+                  marker2 = new google.maps.Marker({
                     map,
                     icon,
                     title: place.name,
                     position: place.geometry.location,
                   })
                 );
+                
+                const infowindow = new google.maps.InfoWindow({
+                  content: "<p>Marker Location:" + marker2.getPosition() + "</p>",
+                });
+                google.maps.event.addListener(marker2, "click", () => {
+                  infoWindow.close();
+                  const content = document.createElement("div");
+                  const nameElement = document.createElement("h2");
+                  nameElement.textContent = place.name;
+                  content.appendChild(nameElement);
+                  const placeAddressElement = document.createElement("p");
+                  placeAddressElement.textContent = place.formatted_address;
+                  content.appendChild(placeAddressElement);
+                  const latLng = document.createElement("p");
+                  latLng.textContent = place.geometry.location;
+                  content.appendChild(latLng);
+                  infowindow.setContent(content);
+                  infowindow.open(map, marker2);
+
+                  $('#latlongclicked').val(place.geometry.location);
+                  $('#latspan').html(place.geometry.location.lat());
+                  $('#lngspan').html(place.geometry.location.lng());
+                  $('#lat').val(place.geometry.location.lat());
+                  $('#lng').val(place.geometry.location.lng());
+                });
 
                 if (place.geometry.viewport) {
                   // Only geocodes have viewport.
